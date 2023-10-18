@@ -42,9 +42,14 @@ button {
     border-width: 0px;
 }
 
-html {
-    /* position: relative;
-    min-height: 100%; */
+button:hover {
+    background-color: whitesmoke;
+    color: rgb(48, 14, 104);
+}
+
+.clicked {
+    background-color: whitesmoke;
+    color: rgb(48, 14, 104);
 }
 
 body {
