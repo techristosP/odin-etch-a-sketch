@@ -9,21 +9,20 @@ function create(size){
         //const row = [];
         let row = document.createElement('div');
         row.setAttribute('class', 'row');
+        row.style.height = 600/size+'px';
         // row.setAttribute('style', 'display: flex; flex-direction: row; justify-content: space-around; align-items: center;');
         document.querySelector('.container').appendChild(row);
         for (let j=0; j<size; j++) {
             const cell = document.createElement('div');
             cell.setAttribute('class', 'cell');
+            cell.style.width =  600/size+'px';
+            cell.style.height =  600/size+'px';
             // cell.setAttribute('style', 'wdith: 30px; height: 30px; border-width: 3px; border-style: solid;');
             // cell.innerText = "Hello World";
 
             cell.addEventListener('mouseover', function() {
-                cell.setAttribute('style', 'background-color: grey');
-            });
-            // cell.addEventListener('mouseout', function() {
-            //     cell.setAttribute('style', 'background-color: white');
-            // });
-            
+                cell.style.backgroundColor = 'rgb(48, 14, 104)';
+            });            
 
             document.querySelector('.container').lastChild.appendChild(cell);
         }
