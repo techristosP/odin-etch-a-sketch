@@ -1,14 +1,21 @@
 let rainbowEffect = false;
-toggleRainbowEffect = () => { rainbowEffect = !rainbowEffect; };
+toggleRainbowEffect = () => {
+    rainbowEffect = !rainbowEffect;
+    let rainbowEffectButton = document.getElementById('rainbow');
+    if (rainbowEffect)
+        rainbowEffectButton.classList.toggle('clicked');
+    else
+        rainbowEffectButton.classList.remove('clicked');
+};
 
 let opacityMode = false;
 toggleOpacityMode = () => {
     opacityMode = !opacityMode;
-    let testButton = document.getElementById('mode');
+    let opacityModeButton = document.getElementById('opacity');
     if (opacityMode)
-        testButton.classList.toggle('clicked');
+        opacityModeButton.classList.toggle('clicked');
     else
-        testButton.classList.remove('clicked');
+        opacityModeButton.classList.remove('clicked');
 };
 
 let clearGrid = () => {
@@ -36,6 +43,19 @@ function create(size) {
             opacity[i][j] = opacityMode ? 0.1 : 1;
         }
     }
+    let color = [];
+    for (let i = 0; i < size; i++) {
+        color[i] = [];
+        for (let j = 0; j < size; j++) {
+            if (rainbowEffect) {
+                r = Math.floor(Math.random() * 255);
+                g = Math.floor(Math.random() * 255);
+                b = Math.floor(Math.random() * 255);
+            }
+            color[i][j] = `${r}, ${g}, ${b}`;
+        }
+    }
+
 
     const container = document.createElement('div');
     container.setAttribute('class', 'container');
@@ -55,14 +75,9 @@ function create(size) {
             cell.style.width = 600 / size + 'px';
             cell.style.height = 600 / size + 'px';
             // cell.setAttribute('style', 'wdith: 30px; height: 30px; border-width: 3px; border-style: solid;');
-            // cell.innerText = "Hello World";
-            if (rainbowEffect) {
-                r = Math.floor(Math.random() * 255);
-                g = Math.floor(Math.random() * 255);
-                b = Math.floor(Math.random() * 255);
-            }
+
             cell.addEventListener('mouseover', function () {
-                cell.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${opacity[i][j] += 0.1})`;
+                cell.style.backgroundColor = `rgba(${color[i][j]}, ${opacity[i][j] += 0.1})`;
             });
 
             document.querySelector('.container').lastChild.appendChild(cell);
